@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Projet</title>
+		<link rel="stylesheet" href="{{ url_for( 'static' , filename = 'css/bootstrap.min.css' ) }}">
+		<link rel="stylesheet" href="{{ url_for( 'static' , filename = 'css/resanet.css' ) }}" >
+		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/jquery-1.11.2.js' ) }}"></script>
+		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/bootstrap.min.js' ) }}"></script>
+	</head>
+	<body>
+		<div class="container">
+		<div class="container-fluid">
+
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+
+					{% if benevole == True  %}
+						<p class="alert alert-danger" role="alert">vous n'est pas un Adherant bénevole.</p>
+					{% endif %}
+
+
+					{% if echecConnexion == True  %}
+						<p class="alert alert-danger" role="alert">Echec à l'authentification. Email et/ou mot de passe incorrects.</p>
+					{% endif %}
+
+					{% if saisieIncomplete == True  %}
+						<p class="alert alert-danger" role="alert">Saisie incomplète. Recommencez...</p>
+					{% endif %}
+
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<form role="form" action="/adherant/seConnecter" method="POST">
+						<div class="form-group">
+							<label for="Email">Nom de connexion</label>
+							<input type="text" class="form-control" name="Email" id="Email" placeholder="Saisir le Email "/>
+						</div>
+						<div class="form-group">
+							<label for="mdp">Mot de passe</label>
+							<input type="password" class="form-control" name="mdp" id="mdp" placeholder="Saisir le mot de passe"/>
+						</div>
+						<button type="submit" class="btn btn-primary">Se connecter</button>
+					</form>
+
+				<div class="col-md-4"></div>
+			</div>
+
+		</div>
+	</body>
+	
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Projet</title>
+		<link rel="stylesheet" href="{{ url_for( 'static' , filename = 'css/bootstrap.min.css' ) }}">
+		<link rel="stylesheet" href="{{ url_for( 'static' , filename = 'css/resanet.css' ) }}" >
+		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/jquery-1.11.2.js' ) }}"></script>
+		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/bootstrap.min.js' ) }}"></script>
+	</head>
+	<body>
+		<div class="container">
+		<h3>Listes des Livraison</h3>
+		<hr/>
+		<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+
+					{% if enregistre == True  %}
+						<p class="alert alert-success" role="alert">le Produit {{ libelle }} est bien enregistre</p>
+					{% endif %}
+
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<table class ="table">
+			<thead>
+				<tr>
+					<th scope="col">idLot</th>
+					<th scope="col">idProduit</th>
+					<th scope="col">Libelle</th>
+					<th scope="col">UniteMesure</th>
+					<th scope="col">idProducteur</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Prenom</th>
+					<th scope="col">date Livraison</th>
+					
+				</tr>
+			</thead>
+			{% for unlot in lot %}
+			
+			<tbody>
+					<tr>
+						<td> {{ unlot['idLot'] }} </td>
+						<td> {{ unlot[ 'idProduit' ]}} </td>
+						<td> {{ unlot[ 'libelle' ]}} </td>
+						<td> {{ unlot[ 'uniteMesure' ]}} </td>
+						<td> {{ unlot[ 'idProducteur' ]}} </td>
+						<td> {{ unlot[ 'nom' ]}} </td>
+						<td> {{ unlot[ 'prenom' ]}} </td>
+						<td> {{ unlot[ 'dateLiv' ]}} </td>
+						
+					</tr>
+			</tbody>
+			{% endfor %}   
+		  </table>  
+			<div class="col-md-4"></div>
+		</div>
+		<div class="row">
+				<div class="col-md-8"></div>
+				<div class="col-md-4">
+					<a href="/adherant/livraisons" class="btn btn-danger btn-lg btn-Red">back</a>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		
+			</div>
+	</body>
+
+
+</html>
