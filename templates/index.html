@@ -1,34 +1,59 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 	<head>
 		<meta charset="utf-8">
-		<title>ProjetSI4</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Projet</title>
+		<link rel="stylesheet" href="{{ url_for( 'static' , filename = 'css/bootstrap.min.css' ) }}">
+		<link rel="stylesheet" href="{{ url_for( 'static' , filename = 'css/resanet.css' ) }}" >
+		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/jquery-1.11.2.js' ) }}"></script>
+		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/bootstrap.min.js' ) }}"></script>
 	</head>
 	<body>
 		<h3>Listes des Adherent</h3>
 		<hr/>
-		<div class="row">
-			<div class="col-md-1"></div>
-			<table class ="table">
-			<thead>
-				<tr>
-					<th scope="col">idAdherant</th>
-					<th scope="col">Email</th>
-					<th scope="col">Mdp</th>
-				</tr>
-			</thead>
-			{% for unAdherant in Adherant %}
 			
-			<tbody>
-					<tr>
-						<td> {{ unAdherant['idAdherant'] }} </td>
-						<td> {{ unAdherant[ 'Email' ]}} </td>
-						<td> {{ unAdherant[ 'mdp' ]}} </td>
-					</tr>
-			</tbody>
-			{% endfor %}   
-		  </table>  
+			<div class="container">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<a href="/adherant/session/choisir" class="btn btn-primary btn-lg btn-block">Sign in</a>
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+				<p></p>
+				<div class="row">
+					<table class ="table">
+					<thead>
+						<tr>
+							<th scope="col">idAdherant</th>
+							<th scope="col">Email</th>
+							<th scope="col">Mdp</th>
+							<th scope="col">Benevole</th>
+						</tr>
+					</thead>
+					{% for unAdherant in Adherant %}
+					
+					<tbody>
+							<tr>
+								<td> {{ unAdherant['idAdherant'] }} </td>
+								<td> {{ unAdherant[ 'Email' ]}} </td>
+								<td> {{ unAdherant[ 'mdp' ]}} </td>
+								{% if unAdherant[ 'benevole' ] == 1 %}
+									<td> {{ True }} </td>
+								{% else %}
+									<td> {{ False }} </td>
+								{% endif %}
+								
+							</tr>
+					</tbody>
+					{% endfor %}   
+				  </table>  
+					<div class="col-md-4"></div>
+				</div>
+			</div>
 	</body>
 
 

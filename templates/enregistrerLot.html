@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Projet</title>
+		<link rel="stylesheet" href="{{ url_for( 'static' , filename = 'css/bootstrap.min.css' ) }}">
+		<link rel="stylesheet" href="{{ url_for( 'static' , filename = 'css/resanet.css' ) }}" >
+		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/jquery-1.11.2.js' ) }}"></script>
+		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/bootstrap.min.js' ) }}"></script>
+	</head>
+	<body>
+		<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+
+					{% if probleme == True  %}
+						<p class="alert alert-success" role="alert">probléme de Saisir !!! RESAISIR LES DONNEES</p>
+					{% endif %}
+
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		<div class="container">
+
+		<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<form role="form" action="/livraison/enregistrer/seEnregistre" method="POST">
+						<div class="form-group">
+							<label for="libelle">Libelle</label>
+							<input type="text" class="form-control" name="libelle" id="libelle" placeholder="Saisir le libelle "/>
+						</div>
+						<div class="form-group">
+							<label for="UM">UniteMesure</label>
+							<input type="number" class="form-control" name="UM" id="UM" placeholder="Saisir le unite de mesure"/>
+						</div>
+						<div class="form-group">
+							<label for="Producteur">Producteur</label>
+							<select name="producteur" id="producteur">
+								{% for unproducteur in producteur %}
+								<option value ="{{ unproducteur['idProducteur']}}"> {{ unproducteur['nom'] }} {{ unproducteur['prenom'] }}</option>
+								{%  endfor %}
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="dateLivraison">Date de Livraison</label>
+							<input type="date" class="form-control" name="dateLivraison" id="dateLivraison" placeholder="aaaa-mm-jj"/>
+						</div>
+					
+						<button type="submit" class="btn btn-primary">Se enregistre</button>
+					</form>
+
+				<div class="col-md-4"></div>
+				<div class="row">
+				<div class="col-md-8"></div>
+				<div class="col-md-4">
+					<a href="/adherant/livraisons" class="btn btn-danger btn-lg btn-Red">back</a>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		
+			</div>
+			</div>
+	
+	</body>
+
+
+</html>

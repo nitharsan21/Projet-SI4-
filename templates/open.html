@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Projet</title>
+		<link rel="stylesheet" href="{{ url_for( 'static' , filename = 'css/bootstrap.min.css' ) }}">
+		<link rel="stylesheet" href="{{ url_for( 'static' , filename = 'css/resanet.css' ) }}" >
+		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/jquery-1.11.2.js' ) }}"></script>
+		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/bootstrap.min.js' ) }}"></script>
+	</head>
+
+	<body>
+		<h3>Fonction</h3>
+		<hr/>
+		<div class="container">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<a href="/adherant/livraisons" class="btn btn-primary btn-lg btn-block">Livraisons</a>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<p></p>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<a href="/adherant/achats" class="btn btn-primary btn-lg btn-block">Achats</a>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-8"></div>
+				<div class="col-md-4">
+					<a href="/" class="btn btn-danger btn-lg btn-Red">disconnect</a>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		</div>
+	</body>
+</html>
