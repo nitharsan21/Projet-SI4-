@@ -10,43 +10,51 @@
 		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/jquery-1.11.2.js' ) }}"></script>
 		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/bootstrap.min.js' ) }}"></script>
 	</head>
-
 	<body>
-		<h3>Fonction</h3>
-		<hr/>
 		<div class="container">
-		<div class="container-fluid">
-			<div class="row">
+		<h3>Liste des Produits furnie par Producteur {{ nom }} {{ prenom }}</h3>
+		<hr/>
+		<div class="row">
 				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<a href="/adherant/livraisons" class="btn btn-primary btn-lg btn-block">Livraisons</a>
-				</div>
 				<div class="col-md-4"></div>
 			</div>
-			<p></p>
-			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<a href="/adherant/achats" class="btn btn-primary btn-lg btn-block">Achats</a>
-				</div>
-				<div class="col-md-4"></div>
-			</div>
-			<p></p>
-			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<a href="/adherant/producteur" class="btn btn-primary btn-lg btn-block">Producteurs</a>
-				</div>
-				<div class="col-md-4"></div>
-			</div>
-			<p></p>
-			<div class="row">
+			<table class ="table">
+			<thead>
+				<tr>
+					<th scope="col">idLot</th>
+					<th scope="col">idProduit</th>
+					<th scope="col">Libelle</th>
+					<th scope="col">UniteMesure</th>
+					<th scope="col">date Livraison</th>
+					
+				</tr>
+			</thead>
+			{% for unlot in lot %}
+			
+			<tbody>
+					<tr>
+						<td> {{ unlot['idLot'] }} </td>
+						<td> {{ unlot[ 'idProduit' ]}} </td>
+						<td> {{ unlot[ 'libelle' ]}} </td>
+						<td> {{ unlot[ 'uniteMesure' ]}} </td>
+						<td> {{ unlot[ 'dateLiv' ]}} </td>
+						
+					</tr>
+			</tbody>
+			{% endfor %}   
+		  </table>  
+			<div class="col-md-4"></div>
+		</div>
+		<div class="row">
 				<div class="col-md-8"></div>
 				<div class="col-md-4">
-					<a href="/" class="btn btn-danger btn-lg btn-Red">disconnect</a>
+					<a href="/adherant/producteur/visualiser" class="btn btn-danger btn-lg btn-Red">back</a>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
-		</div>
+		
+			</div>
 	</body>
+
+
 </html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Projet</title>
+		<link rel="stylesheet" href="{{ url_for( 'static' , filename = 'css/bootstrap.min.css' ) }}">
+		<link rel="stylesheet" href="{{ url_for( 'static' , filename = 'css/resanet.css' ) }}" >
+		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/jquery-1.11.2.js' ) }}"></script>
+		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/bootstrap.min.js' ) }}"></script>
+	</head>
+	<body>
+		<div class="container">
+		<h3>Listes des Producteurs</h3>
+		<hr/>
+		<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+
+					{% if supprimer == True  %}
+						<p class="alert alert-success" role="alert">le Producteur {{ nom }} est bien supprimer</p>
+					{% endif %}
+
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<table class ="table">
+			<thead>
+				<tr>
+					<th scope="col">identifion</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Prénom</th>
+					
+				</tr>
+			</thead>
+			{% for unproducteur in producteur %}
+			
+			<tbody>
+					<tr>
+						<td> {{ unproducteur['idProducteur'] }} </td>
+						<td> {{ unproducteur[ 'nom' ]}} </td>
+						<td> {{ unproducteur[ 'prenom' ]}} </td>
+						
+						<form action="/adherant/producteur/visualiser/modifier/{{ unproducteur['idProducteur'] }}" method="POST">
+							<td><button type="submit" class="btn btn-warning">Modifier</button></td>
+						</form>
+							
+						<form action="/adherant/producteur/visualiser/supprime/{{ unproducteur['idProducteur'] }}/{{ unproducteur['nom'] }}" method="POST">
+							<td><button type="submit" class="btn btn-danger">Supprimer</button></td>
+						</form>
+						
+						<form action="/adherant/producteur/visualiser/produit/{{ unproducteur['idProducteur'] }}/{{ unproducteur['nom'] }}/{{ unproducteur['prenom'] }}" method="POST">
+							<td><button type="submit" class="btn btn-info">Visualiser les Produits</button></td>
+						</form>
+					
+					</tr>
+			</tbody>
+			{% endfor %}   
+		  </table>  
+			<div class="col-md-4"></div>
+		</div>
+		<div class="row">
+				<div class="col-md-8"></div>
+				<div class="col-md-4">
+					<a href="/adherant/producteur" class="btn btn-danger btn-lg btn-Red">back</a>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		
+			</div>
+	</body>
+
+
+</html>

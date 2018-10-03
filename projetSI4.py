@@ -48,10 +48,19 @@ def seConnecterAdherant() :
 def livraison() :
 	return render_template( 'livraison.html' )
 	
+@app.route ( '/adherant/producteur' , methods = [ 'GET' ] )
+def producteur() :
+	return render_template( 'producteur.html' )
+	
 @app.route ( '/adherant/livraisons/visualiser' , methods = [ 'GET' ] )
-def visualiser() :
+def visualiserLot() :
 	lot = modeleProjet.livraisonLot()
 	return render_template( 'visualiserLot.html' , lot = lot )
+	
+@app.route ( '/adherant/producteur/visualiser' , methods = [ 'GET' ] )
+def visualiserProducteur() :
+	producteur = modeleProjet.getproducteur()
+	return render_template( 'visualiserProducteur.html' , producteur = producteur )
 	
 @app.route ( '/adherant/livraisons/Enregistrer' , methods = [ 'GET' ] )
 def enregistrer() :
@@ -75,6 +84,25 @@ def seEnregistrerProduit():
 	
 	else :
 		return redirect('/adherant/livraisons/Enregistrer' , probleme = True)
+	
+
+@app.route ('/adherant/producteur/visualiser/supprime/<nb>/<nom>' , methods =  [ 'POST' ] )
+def supprimerProducteur(nb,nom):
+	supprimeProducteur = modeleProjet.deleteProducteur(nb)
+	producteur = modeleProjet.getproducteur()
+	return render_template('visualiserProducteur.html', supprimer = True , nom=nom , producteur = producteur )
+
+
+@app.route ('/adherant/producteur/visualiser/produit/<nb>/<nom>/<prenom>' , methods = ['POST'] )
+def producteurDeProduit(nb,nom,prenom):
+	lot = modeleProjet.getProduitdeProducteur(nb)
+	return render_template('visualiserLesProduitsUnProducteur.html' , lot = lot , nom=nom , prenom=prenom)
+
+@app.route ('/adherant/producteur/visualiser/modifier/<nb>' , methods = ['POST'] )
+def modifierProducteur(nb):
+	
+	return render_template('producteurModifier.html' , nb = nb )
+
 
 
 if __name__ == '__main__' :

@@ -207,3 +207,93 @@ def insertLot(dateLivraison,idProduit,producteur) :
 	except :
 		
 		return None
+		
+		
+def deleteProducteur(nb) :
+	try:
+		curseur = getConnexionBD().cursor()
+		
+		requete = '''
+				delete from Producteur where idProducteur = %s ;
+				'''
+				
+		curseur.execute( requete , (nb,))
+		connexionBD.commit()
+		nbTuplesTraites = curseur.rowcount
+		curseur.close()
+
+		return nbTuplesTraites
+	
+	except :
+		
+		return None
+		
+def getProduitdeProducteur(nb) : 	
+	try:
+		curseur = getConnexionBD().cursor()
+		
+		requete = '''
+				select idLot,Lot.idProduit,Produit.libelle,Produit.uniteMesure,Lot.idProducteur,Producteur.nom,Producteur.prenom,dateLivraison
+				from Lot 
+				inner join Produit 
+				on Lot.idProduit = Produit.idProduit
+				inner join Producteur
+				on Lot.idProducteur = Producteur.idProducteur
+				where Producteur.idProducteur = %s 
+				'''
+		
+		curseur.execute( requete , (nb, ) )
+		
+		enregistrement = curseur.fetchall()
+		Personnel = {}
+		
+		personnels = []
+	
+		for unEnregistrement in enregistrement :
+			unPersonnel = {}
+			unPersonnel[ 'idLot' ] = unEnregistrement[ 0 ]
+			unPersonnel[ 'idProduit' ] = unEnregistrement[ 1 ]
+			unPersonnel[ 'libelle' ] = unEnregistrement[ 2 ]
+			unPersonnel[ 'uniteMesure' ] = unEnregistrement[ 3 ]
+			unPersonnel[ 'idProducteur' ] = unEnregistrement[ 4 ]
+			unPersonnel[ 'nom' ] = unEnregistrement[ 5 ]
+			unPersonnel[ 'prenom' ] = unEnregistrement[ 6 ]
+			unPersonnel[ 'dateLiv' ] = unEnregistrement[ 7 ]
+
+			personnels.append( unPersonnel )
+		
+		curseur.close()
+		
+		return personnels
+		
+	except :
+		return None
+		
+		
+def modifierProducteur(nom,prenom,idProducteur):
+	try:
+		curseur = getConnexionBD().cursor()
+		
+		requete ='''
+				update Producteur
+				set nom = %s ,prenom = %s
+				where idProducteur = %s
+				'''
+		curseur.execute( requete ,(nom,prenom,idProducteur))
+		connexionBD.commit()
+		nbTuplesTraites = curseur.rowcount
+		curseur.close()
+
+		return nbTuplesTraites
+	
+	except :
+		
+		return None
+		
+		
+
+		
+		
+		
+
+
