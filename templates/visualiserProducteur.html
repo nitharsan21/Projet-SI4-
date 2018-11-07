@@ -21,6 +21,10 @@
 					{% if supprimer == True  %}
 						<p class="alert alert-success" role="alert">le Producteur {{ nom }} est bien supprimer</p>
 					{% endif %}
+					
+					{% if enregistre == True %}
+						<p class="alert alert-success" role="alert">le Producteur {{ nom }} {{ prenom }} est bien enregistre</p>
+					{% endif %}
 
 				</div>
 				<div class="col-md-4"></div>
@@ -42,7 +46,7 @@
 						<td> {{ unproducteur[ 'nom' ]}} </td>
 						<td> {{ unproducteur[ 'prenom' ]}} </td>
 						
-						<form action="/adherant/producteur/visualiser/modifier/{{ unproducteur['idProducteur'] }}" method="POST">
+						<form action="/adherant/producteur/visualiser/modifier/{{ unproducteur['idProducteur'] }}/{{ unproducteur['nom'] }}/{{ unproducteur['prenom'] }}" method="POST">
 							<td><button type="submit" class="btn btn-warning">Modifier</button></td>
 						</form>
 							

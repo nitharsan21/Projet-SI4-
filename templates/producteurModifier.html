@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Projet</title>
+		<link rel="stylesheet" href="{{ url_for( 'static' , filename = 'css/bootstrap.min.css' ) }}">
+		<link rel="stylesheet" href="{{ url_for( 'static' , filename = 'css/resanet.css' ) }}" >
+		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/jquery-1.11.2.js' ) }}"></script>
+		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/bootstrap.min.js' ) }}"></script>
+	</head>
+	<body>
+		<h3>Modifier Producteur</h3>
+		<hr/>
+		<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
 
+					{% if probleme == True  %}
+						<p class="alert alert-success" role="alert">probléme de Saisir !!! RESAISIR LES DONNEES</p>
+					{% endif %}
+
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		<div class="container">
+
+		<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<form role="form" action="/adherant/producteur/visualiser/modifier/seEnregistre/{{ nb }}" method="POST">
+						<div class="form-group">
+							<label for="nom">NOM : {{ nom }}</label>
+							<input type="text" class="form-control" name="nom" id="nom" placeholder="Saisir le Nom de Producteur"/>
+						</div>
+						<div class="form-group">
+							<label for="prenom">Prénom : {{ prenom }}</label>
+							<input type="text" class="form-control" name="prenom" id="prenom" placeholder="Saisir le prénom de Producteur"/>
+						</div>
+						<button type="submit" class="btn btn-primary">Se enregistre</button>
+					</form>
+
+				<div class="col-md-4"></div>
+				<div class="row">
+				<div class="col-md-8"></div>
+				<div class="col-md-4">
+					<a href="???" class="btn btn-danger btn-lg btn-Red">back</a>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		
+			</div>
+			</div>
+	
+	</body>
+
+
+</html>

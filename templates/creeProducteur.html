@@ -11,33 +11,51 @@
 		<script type="text/javascript" src="{{ url_for( 'static' , filename = 'js/bootstrap.min.js' ) }}"></script>
 	</head>
 	<body>
-		<h3>Producteurs</h3>
+		<h3>Créé Producteur</h3>
 		<hr/>
-		
+		<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+
+					{% if probleme == True  %}
+						<p class="alert alert-success" role="alert">probléme de Saisir !!! RESAISIR LES DONNEES</p>
+					{% endif %}
+
+				</div>
+				<div class="col-md-4"></div>
+			</div>
 		<div class="container">
-		<div class="container-fluid">
-			<div class="row">
+
+		<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<a href="/adherant/producteur/visualiser" class="btn btn-primary btn-lg btn-block">Visualiser les Producteurs</a>
-				</div>
+					<form role="form" action="/producteur/cree/seEnregistre" method="POST">
+						<div class="form-group">
+							<label for="nom">NOM</label>
+							<input type="text" class="form-control" name="nom" id="nom" placeholder="Saisir le Nom de Producteur"/>
+						</div>
+						<div class="form-group">
+							<label for="prenom">Prénom</label>
+							<input type="text" class="form-control" name="prenom" id="prenom" placeholder="Saisir le prénom de Producteur"/>
+						</div>
+						<button type="submit" class="btn btn-primary">Se enregistre</button>
+					</form>
+
 				<div class="col-md-4"></div>
-			</div>
-			<p></p>
-			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<a href="/adherant/producteur/cree" class="btn btn-primary btn-lg btn-block">Créé des nouveau Producteurs</a>
-				</div>
-				<div class="col-md-4"></div>
-			</div>
-			<div class="row">
+				<div class="row">
 				<div class="col-md-8"></div>
 				<div class="col-md-4">
-					<a href="/adherant/connect/sucesser" class="btn btn-danger btn-lg btn-Red">back</a>
+					<a href="/adherant/producteur" class="btn btn-danger btn-lg btn-Red">back</a>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
-		</div>
+		
+			</div>
+			</div>
+	
 	</body>
+
+
 </html>
+
+		

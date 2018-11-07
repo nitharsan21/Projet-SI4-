@@ -279,7 +279,48 @@ def modifierProducteur(nom,prenom,idProducteur):
 				set nom = %s ,prenom = %s
 				where idProducteur = %s
 				'''
-		curseur.execute( requete ,(nom,prenom,idProducteur))
+		requete1 ='''
+				update Producteur
+				set nom = %s
+				where idProducteur = %s
+				'''
+		requete2 ='''
+				update Producteur
+				set prenom = %s
+				where idProducteur = %s
+				'''
+		
+		if len(nom) == 0 and len(prenom) != 0:
+			curseur.execute( requete2 ,(prenom,idProducteur))
+			connexionBD.commit()
+			nbTuplesTraites = curseur.rowcount
+			curseur.close()
+		elif len(prenom) == 0 and len(nom) != 0:
+			curseur.execute( requete1 ,(nom,idProducteur))
+			connexionBD.commit()
+			nbTuplesTraites = curseur.rowcount
+			curseur.close()
+		else:
+			curseur.execute( requete ,(nom,prenom,idProducteur))
+			connexionBD.commit()
+			nbTuplesTraites = curseur.rowcount
+			curseur.close()
+
+		return nbTuplesTraites
+	
+	except :
+		
+		return None
+		
+		
+def insertProducteur(nom,prenom):
+	try:
+		curseur = getConnexionBD().cursor()
+		
+		requete ='''
+				insert into Producteur(nom,prenom) values(%s,%s);
+				'''
+		curseur.execute( requete ,(nom,prenom,))
 		connexionBD.commit()
 		nbTuplesTraites = curseur.rowcount
 		curseur.close()
@@ -289,11 +330,7 @@ def modifierProducteur(nom,prenom,idProducteur):
 	except :
 		
 		return None
-		
-		
-
-		
-		
+				 
 		
 
 

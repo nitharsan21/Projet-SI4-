@@ -98,11 +98,47 @@ def producteurDeProduit(nb,nom,prenom):
 	lot = modeleProjet.getProduitdeProducteur(nb)
 	return render_template('visualiserLesProduitsUnProducteur.html' , lot = lot , nom=nom , prenom=prenom)
 
-@app.route ('/adherant/producteur/visualiser/modifier/<nb>' , methods = ['POST'] )
-def modifierProducteur(nb):
-	
-	return render_template('producteurModifier.html' , nb = nb )
 
+	
+@app.route ('/adherant/producteur/cree' , methods = ['GET'] )
+def creeproducteur():
+	return render_template('creeProducteur.html')
+	
+@app.route ('/producteur/cree/seEnregistre' , methods = ['POST'] )
+def seEnregistrerProducteur():
+	nom = request.form[ 'nom' ]
+	prenom = request.form[ 'prenom' ]
+	
+	producteurInsert = modeleProjet.insertProducteur(nom,prenom)
+	
+	if producteurInsert != None :
+		producteur = modeleProjet.getproducteur()
+		return render_template( 'visualiserProducteur.html' , producteur = producteur , enregistre = True , nom = nom, prenom = prenom )
+	
+	else :
+		return redirect('/producteur/cree/seEnregistre' , probleme = True)
+
+@app.route ('/adherant/producteur/visualiser/modifier/<nb>/<nom>/<prenom>' , methods = ['POST'] )
+def modifierProducteur(nb,nom,prenom):
+	return render_template('producteurModifier.html' , nb = nb, nom = nom , prenom = prenom )	
+	
+	
+@app.route ('/adherant/producteur/visualiser/modifier/seEnregistre/<nb>' , methods = ['POST'] )
+def enregistrerModification(nb):
+	nom = request.form[ 'nom' ]
+	prenom = request.form[ 'prenom' ]
+	
+	if len(nom) == 0 and len(prenom) == 0:
+		return redirect('/adherant/producteur/visualiser')
+	
+	else:
+		producteurmodifier = modeleProjet.modifierProducteur(nom,prenom,nb)
+		if producteurmodifier != None :
+			producteur = modeleProjet.getproducteur()
+			return render_template( 'visualiserProducteur.html' , producteur = producteur , enregistre = True , nom = nom, prenom = prenom )
+		
+		else :
+			return redirect('/adherant/producteur/visualiser/modifier/<nb>/<nom>/<prenom>' , probleme = True)
 
 
 if __name__ == '__main__' :
